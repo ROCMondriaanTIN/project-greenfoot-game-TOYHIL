@@ -37,8 +37,6 @@ public class Hero extends Mover {
     
     private int frame = 1;
     private int speed = 3;
-    private int vSpeed = 0;
-    private int acceleration = 2;
     private boolean onGround;
     
 
@@ -60,7 +58,6 @@ public class Hero extends Mover {
             velocityY = gravity;
         }
         applyVelocity();
-        checkFall();
         handleInput();
 
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
@@ -70,10 +67,14 @@ public class Hero extends Mover {
             }
         }
     }
-
+    boolean onGround(){
+        Actor under = getOneObjectAtOffset(0, getImage().getHeight()/2, Tile.class);
+        return under != null;
+        }
+        
     public void handleInput() { 
-        if (Greenfoot.isKeyDown("w") && onGround()) {
-            velocityY = -10;
+        if (Greenfoot.isKeyDown("w") && (onGround() == true)) {
+            velocityY = -15;
             setImage("p1_jump.png");
         }
 
@@ -88,24 +89,7 @@ public class Hero extends Mover {
         
     }
     
-    public void checkFall() {
-        if(onGround()){
-        }
-        else{
-            fall();
-        }
-    }
-    
-    public boolean onGround(){
-        onGround = true;
-        return onGround;
-    }
-    
-    
-    public void fall(){
-        setLocation( getX(), getY() + vSpeed);
-        vSpeed = vSpeed + acceleration;
-    }
+
     
 
     public int getWidth() {
