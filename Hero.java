@@ -37,9 +37,6 @@ public class Hero extends Mover {
     
     private int frame = 1;
     private int speed = 3;
-    private boolean walking;
-    private boolean facingRight;
-    private boolean isKeyPressed;
     
 
     public Hero() {
@@ -70,7 +67,9 @@ public class Hero extends Mover {
     }
 
     public void handleInput() {
-        if (Greenfoot.isKeyDown("w")) {
+        
+        if (Greenfoot.isKeyDown("w") && onGround()) {
+            jump();
             velocityY = -15;
             setImage("p1_jump.png");
         }
