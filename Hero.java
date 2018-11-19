@@ -74,16 +74,16 @@ public class Hero extends Mover {
         
     public void handleInput() { 
         if (Greenfoot.isKeyDown("w") && (onGround() == true)) {
-            velocityY = -15;
+            velocityY = -30;
             setImage("p1_jump.png");
         }
 
         else if (Greenfoot.isKeyDown("a")) {
-            velocityX = -2;
+            velocityX = -10;
             animatieLeft();
         } 
         if (Greenfoot.isKeyDown("d")) {
-            velocityX = 2;
+            velocityX = 10;
             animatieRight();
         }
         
@@ -175,23 +175,23 @@ public class Hero extends Mover {
         }
         else if (frame == 6)
         {
-            setImage(run17);
+            setImage(run6);
         }
         else if (frame == 7)
         {
-            setImage(run18);
+            setImage(run7);
         }
         else if (frame == 8)
         {
-            setImage(run19);
+            setImage(run8);
         }
         else if (frame == 9)
         {
-            setImage(run20);
+            setImage(run9);
         }
         else if (frame == 10)
         {
-            setImage (run21);
+            setImage (run10);
             frame = 0;
             return;
         }
