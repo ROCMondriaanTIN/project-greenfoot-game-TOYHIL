@@ -1,5 +1,3 @@
-
-
 import greenfoot.*;
 
 /**
@@ -38,6 +36,9 @@ public class Hero extends Mover {
     private int frame = 1;
     private int speed = 3;
     private boolean onGround;
+    private int levens = 5;
+    private int spawnX;
+    private int spawnY;
     
 
     public Hero() {
@@ -66,13 +67,35 @@ public class Hero extends Mover {
                 break;
             }
         }
+        for (Tile tile : getIntersectingObjects(Tile.class)) {
+            if(tile != null) {
+                if (tile.getImage().toString().contains("liquid")) {
+                dood();
+                break;
     }
-    boolean onGround(){
+            if(tile.getImage().toString().contains("blueKey.png")) {
+                getWorld().removeObject(tile);
+                break;
+
+   }
+    if(tile.getImage().toString().contains("greenKey.png")) {
+                getWorld().removeObject(tile);
+                break;
+
+   }
+            if(tile.getImage().toString().contains("spikes")){
+                getWorld().removeObject(this);
+    }  
+   }
+   }
+}
+
+         boolean onGround(){
         Actor under = getOneObjectAtOffset(0, getImage().getHeight()/2, Tile.class);
         return under != null;
         }
         
-    public void handleInput() { 
+        public void handleInput() { 
         if (Greenfoot.isKeyDown("w") && (onGround() == true)) {
             velocityY = -30;
             setImage("p1_jump.png");
@@ -88,6 +111,8 @@ public class Hero extends Mover {
         }
         
     }
+    
+    
     
 
     
@@ -197,6 +222,16 @@ public class Hero extends Mover {
         }
         frame ++;
        }
-    }
+       
+       public void dood() {
+           levens --;
+           if (levens > 0) {
+               setLocation(spawnX, spawnY);
+            } else {
+                getWorld().removeObject(this);
+            }
+   }
+}
+
         
         
