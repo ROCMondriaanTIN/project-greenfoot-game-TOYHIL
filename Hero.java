@@ -97,7 +97,7 @@ public class Hero extends Mover {
         
         public void handleInput() { 
         if (Greenfoot.isKeyDown("w") && (onGround() == true)) {
-            velocityY = -30;
+            velocityY = -15;
             setImage("p1_jump.png");
         }
 
