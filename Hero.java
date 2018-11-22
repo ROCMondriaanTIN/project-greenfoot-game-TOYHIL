@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.List;
 
 /**
  *
@@ -39,10 +40,14 @@ public class Hero extends Mover {
     private int levens = 5;
     private int spawnX;
     private int spawnY;
+    private CollisionEngine collisionEngine;
+    private TileEngine tileEngine;
     
 
-    public Hero() {
+    public Hero(CollisionEngine collisionEngine, TileEngine tileEngine) {
         super();
+        this.collisionEngine = collisionEngine;
+        this.tileEngine = tileEngine;
         gravity = 9.8;
         acc = 0.6;
         drag = 0.8;
@@ -67,28 +72,32 @@ public class Hero extends Mover {
                 break;
             }
         }
-        for (Tile tile : getIntersectingObjects(Tile.class)) {
-            if(tile != null) {
-                if (tile.getImage().toString().contains("liquid")) {
-                dood();
-                break;
+        
+        List <Tile> tiles = collisionEngine.getCollidingTiles(this, true);
+
+        for (Tile tile : tiles) {
+            if (tile != null) {
+                if (tile.type == TileType.LIQUID) {
+                    getWorld().removeObject(this);
+                    return;
+                } else if (tile.type == TileType.KEYGREEN) {
+                    // Op deze manier kan je nu tiles verwijderen
+                    // Zie ook de andere removeTile methodes die zijn toegevoegd
+                    tileEngine.removeTile(tile);
+                    return;
+                }
+                
+                else if (tile.type == TileType.KEYBLUE) {
+                    tileEngine.removeTile(tile);
+                    return;
+                }
+                else if (tile.type == TileType.GEMBLUE) {
+                    tileEngine.removeTile(tile);
+                    return;
+                }
+            }
+        }
     }
-            if(tile.getImage().toString().contains("blueKey.png")) {
-                getWorld().removeObject(tile);
-                break;
-
-   }
-    if(tile.getImage().toString().contains("greenKey.png")) {
-                getWorld().removeObject(tile);
-                break;
-
-   }
-            if(tile.getImage().toString().contains("spikes")){
-                getWorld().removeObject(this);
-    }  
-   }
-   }
-}
 
          boolean onGround(){
         Actor under = getOneObjectAtOffset(0, getImage().getHeight()/2, Tile.class);

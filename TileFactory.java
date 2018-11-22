@@ -771,7 +771,7 @@ public class TileFactory {
 
             case 93: 
 
-                tile = new Tile("liquidWater.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+                tile = new Tile("liquidWater.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.LIQUID); 
 
                 break; 
 
@@ -1609,7 +1609,7 @@ public class TileFactory {
 
             case 204: 
 
-                tile = new Tile("gemBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+                tile = new Tile("gemBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.GEMBLUE); 
 
                 break; 
 
@@ -1633,7 +1633,7 @@ public class TileFactory {
 
             case 208: 
 
-                tile = new Tile("keyBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+                tile = new Tile("keyBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.KEYBLUE); 
 
                 tile.isSolid = false; 
 
@@ -1641,7 +1641,7 @@ public class TileFactory {
 
             case 209: 
 
-                tile = new Tile("keyGreen.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+                tile = new Tile("keyGreen.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.KEYGREEN); 
 
                 break; 
 
