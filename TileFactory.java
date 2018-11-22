@@ -23,8 +23,7 @@ public class TileFactory {
      * @return Tile tile object 
 
      */ 
-
-    public static Tile createTile(int mapIcon) { 
+    public Tile createTile(int mapIcon) {
 
         Tile tile; 
 
