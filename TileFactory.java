@@ -1,5 +1,3 @@
-  
-
 /** 
 
 * 
@@ -744,7 +742,7 @@ public class TileFactory {
 
             case 88: 
 
-                tile = new Tile("ladder_mid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+                tile = new Tile("ladder_mid.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);   x
 
                 break; 
 
@@ -774,7 +772,7 @@ public class TileFactory {
 
             case 93: 
 
-                tile = new Tile("liquidWater.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, "liquid"); 
+                tile = new Tile("liquidWater.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.WATER); 
 
                 break; 
 
