@@ -789,7 +789,7 @@ public class TileFactory {
 
             case 96: 
 
-                tile = new Tile("lock_blue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.BLUELOCK); 
+                tile = new Door("lock_blue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.BLUELOCK); 
 
                 tile.isSolid = true; 
 
@@ -797,7 +797,7 @@ public class TileFactory {
 
             case 97: 
 
-                tile = new Tile("lock_green.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.GREENLOCK); 
+                tile = new Door("lock_green.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.GREENLOCK); 
 
                 tile.isSolid = true; 
 
@@ -805,7 +805,7 @@ public class TileFactory {
 
             case 98: 
 
-                tile = new Tile("lock_red.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.REDLOCK); 
+                tile = new Door("lock_red.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.REDLOCK); 
 
                 tile.isSolid = true; 
 
@@ -813,7 +813,7 @@ public class TileFactory {
 
             case 99: 
 
-                tile = new Tile("lock_yellow.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.YELLOWLOCK); 
+                tile = new Door("lock_yellow.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.YELLOWLOCK); 
 
                 tile.isSolid = true; 
 

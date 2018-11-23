@@ -83,32 +83,40 @@ public class Hero extends Mover {
                 if (tile.type == TileType.LIQUID) {
                     getWorld().removeObject(this);
                     return;
-                }
-                    
-                if(Greenfoot.isKeyDown("e")) {
-                   if (tile.type == TileType.KEYGREEN) {
-                    // Op deze manier kan je nu tiles verwijderen
-                    // Zie ook de andere removeTile methodes die zijn toegevoegd
-                    for(Door door : getWorld().getObjects(Door.class) ) {
-                       if(door.type == TileType.GREENLOCK) {
-                           getWorld().removeObject(this);
-                        }
-                    }
+                } else if (tile.type == TileType.SPIKES) {
+                    getWorld().removeObject(this);
                     return;
                 }
                 
-                else if (tile.type == TileType.KEYBLUE) {
-                    tileEngine.removeTile(tile);
-                    return;
-                }
-                else if (tile.type == TileType.GEMBLUE) {
-                    tileEngine.removeTile(tile);
-                    return;
+                    
+                if(Greenfoot.isKeyDown("e")) {
+                   if (tile.type == TileType.KEYGREEN) {
+                       tileEngine.removeTile(tile);
+                       for(Door door : getWorld().getObjects(Door.class) ) {
+                           if(door.type == TileType.GREENLOCK) {
+                               tileEngine.removeTile(door);
+                            }
+                        }
+                        
+                        if (tile.type == TileType.KEYBLUE) {
+                            tileEngine.removeTile(tile);
+                       for(Door door : getWorld().getObjects(Door.class) ) {
+                           if(door.type == TileType.BLUELOCK) {
+                               tileEngine.removeTile(door);
+                            }
+                        }
+                        
+                        }
+                         if (tile.type == TileType.GEMBLUE) {
+                            tileEngine.removeTile(tile);
+                            return;
+                        }
+                    }
                 }
             }
         }
     }
-    }
+
     
         
     

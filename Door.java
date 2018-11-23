@@ -10,9 +10,9 @@ public class Door extends Tile
 {
     
 
-    public Door(String image, int width, int heigth)
+    public Door(String image, int width, int heigth, TileType type)
     {
-        super(image, width, heigth);
+        super(image, width, heigth, type);
     
     }
 }
