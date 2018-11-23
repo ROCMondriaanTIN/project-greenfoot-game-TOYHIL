@@ -17,6 +17,8 @@ public enum TileType {
     KEYBLUE,
     KEYGREEN, 
     GEMBLUE,
+    SPIKES, 
+    
     
     // Add your own tile types here
 }

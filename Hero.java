@@ -42,6 +42,9 @@ public class Hero extends Mover {
     private int spawnY;
     private CollisionEngine collisionEngine;
     private TileEngine tileEngine;
+    private boolean isTouching;
+    private int lockpick = 0;
+    private int lockpick_total = 0;
     
 
     public Hero(CollisionEngine collisionEngine, TileEngine tileEngine) {
@@ -80,7 +83,10 @@ public class Hero extends Mover {
                 if (tile.type == TileType.LIQUID) {
                     getWorld().removeObject(this);
                     return;
-                } else if (tile.type == TileType.KEYGREEN) {
+                }
+                    
+                if(Greenfoot.isKeyDown("e")) {
+                   if (tile.type == TileType.KEYGREEN) {
                     // Op deze manier kan je nu tiles verwijderen
                     // Zie ook de andere removeTile methodes die zijn toegevoegd
                     tileEngine.removeTile(tile);
@@ -98,28 +104,33 @@ public class Hero extends Mover {
             }
         }
     }
+    }
+    
+        
+    
 
-         boolean onGround(){
+       boolean onGround(){
         Actor under = getOneObjectAtOffset(0, getImage().getHeight()/2, Tile.class);
         return under != null;
         }
         
-        public void handleInput() { 
+       public void handleInput() { 
         if (Greenfoot.isKeyDown("w") && (onGround() == true)) {
             velocityY = -15;
             setImage("p1_jump.png");
         }
 
         else if (Greenfoot.isKeyDown("a")) {
-            velocityX = -10;
+            velocityX = -5;
             animatieLeft();
         } 
         if (Greenfoot.isKeyDown("d")) {
-            velocityX = 10;
+            velocityX = 5;
             animatieRight();
         }
         
-    }
+
+}
     
     
     
