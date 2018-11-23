@@ -89,7 +89,11 @@ public class Hero extends Mover {
                    if (tile.type == TileType.KEYGREEN) {
                     // Op deze manier kan je nu tiles verwijderen
                     // Zie ook de andere removeTile methodes die zijn toegevoegd
-                    tileEngine.removeTile(tile);
+                    for(Door door : getWorld().getObjects(Door.class) ) {
+                       if(door.type == TileType.GREENLOCK) {
+                           getWorld().removeObject(this);
+                        }
+                    }
                     return;
                 }
                 

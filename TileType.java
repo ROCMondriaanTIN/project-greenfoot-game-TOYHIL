@@ -18,6 +18,10 @@ public enum TileType {
     KEYGREEN, 
     GEMBLUE,
     SPIKES, 
+    BLUELOCK,
+    YELLOWLOCK,
+    REDLOCK,
+    GREENLOCK,
     
     
     // Add your own tile types here
