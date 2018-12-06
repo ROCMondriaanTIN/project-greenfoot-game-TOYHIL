@@ -1635,8 +1635,6 @@ public class TileFactory {
 
                 tile = new Tile("keyBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.KEYBLUE); 
 
-                tile.isSolid = false; 
-
                 break; 
 
             case 209: 
@@ -1647,7 +1645,7 @@ public class TileFactory {
 
             case 210: 
 
-                tile = new Tile("keyRed.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+                tile = new Tile("keyRed.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.KEYRED); 
 
                 break; 
 
@@ -1719,7 +1717,7 @@ public class TileFactory {
 
             case 222: 
 
-                tile = new Tile("spikes.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.SPIKES); 
+                tile = new spikesTile("spikes.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.SPIKES); 
 
                 tile.isSolid = true; 
 
@@ -1741,7 +1739,7 @@ public class TileFactory {
 
             case 225: 
 
-                tile = new Tile("star.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+                tile = new Tile("star.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.STAR); 
 
                 break; 
 
@@ -1776,6 +1774,54 @@ public class TileFactory {
                 tile = new Tile("weightChained.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
 
                 tile.isSolid = true; 
+
+                break; 
+                
+                case 231: 
+
+                tile = new Tile("hud_gem_blue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+
+                tile.isSolid = false; 
+
+                break; 
+                
+                case 232: 
+
+                tile = new Tile("hud_heartFull.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+
+                tile.isSolid = false; 
+
+                break; 
+                
+                case 233: 
+
+                tile = new Tile("hud_heartHalf.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+
+                tile.isSolid = false; 
+
+                break; 
+                
+                case 234: 
+
+                tile = new Tile("hud_keyBlue.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+
+                tile.isSolid = false; 
+
+                break; 
+                
+                case 235: 
+
+                tile = new Tile("hud_keyGreen.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+
+                tile.isSolid = false; 
+
+                break; 
+                
+                case 236: 
+
+                tile = new Tile("hud_heartEmpty.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+
+                tile.isSolid = false; 
 
                 break; 
 

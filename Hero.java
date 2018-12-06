@@ -1,3 +1,4 @@
+
 import greenfoot.*;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class Hero extends Mover {
     private int frame = 1;
     private int speed = 3;
     private boolean onGround;
-    private int levens = 5;
+    public  int leven = 3;
     private int spawnX;
     private int spawnY;
     private CollisionEngine collisionEngine;
@@ -45,6 +46,13 @@ public class Hero extends Mover {
     private boolean isTouching;
     private int lockpick = 0;
     private int lockpick_total = 0;
+    private int score = 0;
+    private int status = 0;
+    public int levens = 3;
+    public String worldName="";
+    int Gem= 0;
+    public boolean eatKeys;
+    boolean key = false;
     
 
     public Hero(CollisionEngine collisionEngine, TileEngine tileEngine) {
@@ -54,6 +62,7 @@ public class Hero extends Mover {
         gravity = 9.8;
         acc = 0.6;
         drag = 0.8;
+        this.worldName = worldName;
         setImage("p1_front.png");
     }
 
@@ -68,10 +77,14 @@ public class Hero extends Mover {
         }
         applyVelocity();
         handleInput();
+        gem();
+      
+        
+       
 
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
-                getWorld().removeObject(this);
+                setLocation(300,200);
                 break;
             }
         }
@@ -81,43 +94,82 @@ public class Hero extends Mover {
         for (Tile tile : tiles) {
             if (tile != null) {
                 if (tile.type == TileType.LIQUID) {
-                    getWorld().removeObject(this);
+                    setLocation(300,200);
                     return;
-                } else if (tile.type == TileType.SPIKES) {
-                    getWorld().removeObject(this);
+                } if (tile.type == TileType.SPIKES) {
+                    setLocation(300,200);
                     return;
-                }
+                } else  if (tile.type == TileType.GEMBLUE) {
+                            tileEngine.removeTile(tile);
+                            updateScoremunt();
+                            return;
+                        } else  if (tile.type == TileType.STAR) {
+                            tileEngine.removeTile(tile);
+                            return;
+                        }
+                        if (tile.type == TileType.KEYRED) {
+                            tileEngine.removeTile(tile);
+                            for(Door door : getWorld().getObjects(Door.class) ) {
+                                if(door.type == TileType.REDLOCK) {
+                                    tileEngine.removeTile(door);
+                                }
+                                
+                            }
+                        }
+                        return;
+                    }
                 
                     
                 if(Greenfoot.isKeyDown("e")) {
                    if (tile.type == TileType.KEYGREEN) {
                        tileEngine.removeTile(tile);
+                      
                        for(Door door : getWorld().getObjects(Door.class) ) {
                            if(door.type == TileType.GREENLOCK) {
                                tileEngine.removeTile(door);
                             }
+                            
                         }
-                        
-                        if (tile.type == TileType.KEYBLUE) {
-                            tileEngine.removeTile(tile);
+
+                     if (tile.type == TileType.KEYBLUE) {
+                    tileEngine.removeTile(tile);
                        for(Door door : getWorld().getObjects(Door.class) ) {
                            if(door.type == TileType.BLUELOCK) {
                                tileEngine.removeTile(door);
                             }
+                            
                         }
-                        
-                        }
-                         if (tile.type == TileType.GEMBLUE) {
-                            tileEngine.removeTile(tile);
-                            return;
-                        }
+                     
                     }
+
                 }
+                return;
             }
         }
     }
-
     
+
+
+        public void isTouching()
+        {
+            if(isTouching (spikesTile.class))
+            {
+                setLocation(300 , 200);
+            }
+            return;
+        }
+        
+        public int levens() {
+             if(leven==0)
+            {
+            if(worldName=="MyWorld")
+            {
+            Greenfoot.setWorld(new MyWorld());
+}
+            
+        }
+        return levens;
+    }
         
     
 
@@ -140,7 +192,9 @@ public class Hero extends Mover {
             velocityX = 5;
             animatieRight();
         }
-        
+        if (Greenfoot.isKeyDown("Control") && (Greenfoot.isKeyDown("r"))) {
+            Greenfoot.setWorld(new MyWorld());
+        }
 
 }
     
@@ -156,6 +210,25 @@ public class Hero extends Mover {
     public int getHeight() {
         return getImage().getHeight();
     }
+    
+    public void updateScoremunt()
+    {
+        score ++;
+        }
+        
+        public void gem()
+        
+        {
+            if(isTouching(Gem.class))
+            
+            {
+                
+                removeTouching(Gem.class);
+                Gem++;
+}
+}
+        
+
     
     
     
@@ -256,14 +329,16 @@ public class Hero extends Mover {
        }
        
        public void dood() {
-           levens --;
-           if (levens > 0) {
-               setLocation(spawnX, spawnY);
+           leven --;
+           if (leven > 0) {
+               setLocation(300, 200);
             } else {
                 getWorld().removeObject(this);
             }
    }
-}
+
+     }
+     
 
         
         
