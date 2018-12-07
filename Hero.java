@@ -53,6 +53,11 @@ public class Hero extends Mover {
     int Gem= 0;
     public boolean eatKeys;
     boolean key = false;
+    public boolean starAdded = false;
+    public boolean keyBlueAdded = false;
+    public boolean keyGreenAdded = false;
+    public boolean keyRedAdded = false;
+    public boolean gemAdded = false;
     
 
     public Hero(CollisionEngine collisionEngine, TileEngine tileEngine) {
@@ -78,6 +83,8 @@ public class Hero extends Mover {
         applyVelocity();
         handleInput();
         gem();
+        
+
       
         
        
@@ -88,10 +95,9 @@ public class Hero extends Mover {
                 break;
             }
         }
-        
         List <Tile> tiles = collisionEngine.getCollidingTiles(this, true);
+        for (Tile tile : getIntersectingObjects(Tile.class)) {
 
-        for (Tile tile : tiles) {
             if (tile != null) {
                 if (tile.type == TileType.LIQUID) {
                     setLocation(300,200);
@@ -101,9 +107,10 @@ public class Hero extends Mover {
                     return;
                 } else  if (tile.type == TileType.GEMBLUE) {
                             tileEngine.removeTile(tile);
-                            updateScoremunt();
+                            this.gemAdded = true;
                             return;
                         } else  if (tile.type == TileType.STAR) {
+                            this.starAdded = true;
                             tileEngine.removeTile(tile);
                             return;
                         }
@@ -116,23 +123,24 @@ public class Hero extends Mover {
                                 
                             }
                         }
-                        return;
+
                     }
                 
                     
                 if(Greenfoot.isKeyDown("e")) {
                    if (tile.type == TileType.KEYGREEN) {
                        tileEngine.removeTile(tile);
-                      
+                      this.keyGreenAdded = true;
                        for(Door door : getWorld().getObjects(Door.class) ) {
                            if(door.type == TileType.GREENLOCK) {
                                tileEngine.removeTile(door);
                             }
                             
                         }
-
+                    }
                      if (tile.type == TileType.KEYBLUE) {
                     tileEngine.removeTile(tile);
+                    this.keyBlueAdded = true;
                        for(Door door : getWorld().getObjects(Door.class) ) {
                            if(door.type == TileType.BLUELOCK) {
                                tileEngine.removeTile(door);
@@ -141,12 +149,21 @@ public class Hero extends Mover {
                         }
                      
                     }
+                    if (tile.type == TileType.KEYRED) {
+                            tileEngine.removeTile(tile);
+                            this.keyRedAdded = true;
+                            for(Door door : getWorld().getObjects(Door.class) ) {
+                                if(door.type == TileType.REDLOCK) {
+                                    tileEngine.removeTile(door);
+                                }
+                                
+                            }
+                        }
 
                 }
-                return;
+                
             }
         }
-    }
     
 
 

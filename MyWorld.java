@@ -9,6 +9,12 @@ public class MyWorld extends World {
     private CollisionEngine ce;
     private int score = 0;
     private TileEngine te;
+    public static boolean hud_heartFull = false;
+    public Hero hero;
+    public static int starX = 100;
+    public static int keyBlueX = 150;
+    public static int keyGreenX = 150;
+    public static int keyRedX = 150;
     
 
     /**
@@ -72,14 +78,7 @@ public class MyWorld extends World {
 {65,93,93,93,93,93,93,93,93,94,73,73,73,-1,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,65},
 {65,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,65},
 {65,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,93,65},
-
-
-
-
-
-
-   
-            
+          
         };
 
         // Declareren en initialiseren van de TileEngine klasse om de map aan de world toe te voegen
@@ -92,9 +91,9 @@ public class MyWorld extends World {
         // Declareren en initialiseren van een main karakter van het spel mijne heet Hero. Deze klasse 
         // moet de klasse Mover extenden voor de camera om te werken
         ce = new CollisionEngine(te, camera);
-        showText("Level: 1", 100, 100);
+        showText("Level: 1", 50, 30);
         
-        Hero hero = new Hero(ce, te);
+        hero = new Hero(ce, te);
         
         ce.addCollidingMover(hero);
 
@@ -105,6 +104,8 @@ public class MyWorld extends World {
         addObject(camera, 0, 0);
         addObject(hero, 300, 200);
         addObject(new Enemy(), 1602, 1000);
+        addObject(new Heart (), 50, 100);
+        
         
         // Force act zodat de camera op de juist plek staat.
         camera.act();
@@ -117,12 +118,70 @@ public class MyWorld extends World {
     @Override
     public void act() {
         ce.update();
-    }
-    public void increaseScore() {
-        score = score + 1;
-    }
+        if (hero.starAdded == true)
+        {
+            addObject(new CoinHUD(), starX, 100);
+            
+            starX += 30;
+            hero.starAdded = false;
+        }
+        //if (hud_heartFull == false)
+        // { Greenfoot.setWorld(new MyWorld(500));
+        //   
+        //}
+        
+        if (hero.gemAdded == true)
+        {
+            addObject(new gemBlue(), 50, 175);
+        }
+       if (hero.keyBlueAdded == true)
+        {
+            addObject(new KeyBlue(), 50, 50);
+           
+        }
+ if (hero.keyGreenAdded == true)
+{
     
+    addObject(new KeyGreen(), 50, 50);
+    
+}
+  if (hero.keyRedAdded == true)
+{
+    addObject(new KeyRed(), 50, 50);
+    
+}
 
+    }
+    public  void keys() {
+        if (hero.keyBlueAdded == true)
+{
+    hero.keyBlueAdded = false;
+    addObject(new KeyBlue(), 100, 50);
     
+    return;
+}
+ if (hero.keyGreenAdded == true)
+{
+    hero.keyGreenAdded = false;
+    addObject(new KeyGreen(), 125, 50);
+    
+    return;
+}
+  if (hero.keyRedAdded == true)
+{
+    hero.keyRedAdded = false;
+    addObject(new KeyRed(), 50, 50);
+    
+    return;
+}
+if(hero.gemAdded == true)
+{
+    hero.gemAdded = false;
+    addObject(new gemBlue(), 50, 175);
+    
+    return;
 
 }
+} 
+}
+
