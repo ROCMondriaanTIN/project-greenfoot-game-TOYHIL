@@ -91,7 +91,7 @@ public class MyWorld extends World {
         // Declareren en initialiseren van een main karakter van het spel mijne heet Hero. Deze klasse 
         // moet de klasse Mover extenden voor de camera om te werken
         ce = new CollisionEngine(te, camera);
-        showText("Level: 1", 50, 30);
+        showText("Level: 1", 150, 30);
         
         hero = new Hero(ce, te);
         
@@ -142,35 +142,42 @@ public class MyWorld extends World {
  if (hero.keyGreenAdded == true)
 {
     
-    addObject(new KeyGreen(), 50, 50);
+    addObject(new KeyGreen(), 50, 75);
     
 }
   if (hero.keyRedAdded == true)
 {
-    addObject(new KeyRed(), 50, 50);
+    addObject(new KeyRed(), 50, 100);
     
 }
 
     }
     public  void keys() {
+        if (hero.starAdded == true)
+        {
+            hero.starAdded = false;
+            addObject(new CoinHUD(), 40, 40);
+            return;
+        }
+        
         if (hero.keyBlueAdded == true)
 {
     hero.keyBlueAdded = false;
-    addObject(new KeyBlue(), 100, 50);
+    addObject(new KeyBlue(), 50, 50);
     
     return;
 }
  if (hero.keyGreenAdded == true)
 {
     hero.keyGreenAdded = false;
-    addObject(new KeyGreen(), 125, 50);
+    addObject(new KeyGreen(), 50, 75);
     
     return;
 }
   if (hero.keyRedAdded == true)
 {
     hero.keyRedAdded = false;
-    addObject(new KeyRed(), 50, 50);
+    addObject(new KeyRed(), 50, 100);
     
     return;
 }
