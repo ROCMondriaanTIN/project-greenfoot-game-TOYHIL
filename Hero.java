@@ -7,7 +7,7 @@ import java.util.List;
  * @author R. Springer
  */
 public class Hero extends Mover {
-
+ 
     private final double gravity;
     private final double acc;
     private final double drag;
@@ -58,6 +58,9 @@ public class Hero extends Mover {
     public boolean keyGreenAdded = false;
     public boolean keyRedAdded = false;
     public boolean gemAdded = false;
+    private boolean toLevel2;
+    
+    
     
 
     public Hero(CollisionEngine collisionEngine, TileEngine tileEngine) {
@@ -74,7 +77,6 @@ public class Hero extends Mover {
     @Override
     public void act() {
         handleInput();
-        
         velocityX *= drag;
         velocityY += acc;
         if (velocityY > gravity) {
@@ -83,7 +85,7 @@ public class Hero extends Mover {
         applyVelocity();
         handleInput();
         gem();
-        
+        toLevel2();
 
       
         
@@ -244,6 +246,14 @@ public class Hero extends Mover {
                 Gem++;
 }
 }
+    public boolean toLevel2() {
+        if(isTouching (Window.class)) {
+            Greenfoot.setWorld(new Level2());
+            
+        }
+        return toLevel2;
+    }
+    
         
 
     
@@ -353,6 +363,8 @@ public class Hero extends Mover {
                 getWorld().removeObject(this);
             }
    }
+
+
 
      }
      
