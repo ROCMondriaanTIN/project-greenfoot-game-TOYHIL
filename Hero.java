@@ -85,7 +85,6 @@ public class Hero extends Mover {
         }
         applyVelocity();
         handleInput();
-  
         toLevel2();
 
       
@@ -103,10 +102,10 @@ public class Hero extends Mover {
 
             if (tile != null) {
                 if (tile.type == TileType.LIQUID) {
-                    setLocation(300,200);
+                    setLocation(50,400);
                     return;
                 } if (tile.type == TileType.SPIKES) {
-                    setLocation(300,200);
+                    setLocation(50,400);
                     return;
                 } else  if (tile.type == TileType.GEMBLUE) {
                             tileEngine.removeTile(tile);
@@ -174,26 +173,23 @@ public class Hero extends Mover {
         {
             if(isTouching (spikesTile.class))
             {
-                setLocation(300 , 200);
+                setLocation(50 , 400);
             }
             if(isTouching (Star.class)) {
             star++;
         }
+        if (isTouching (spikesTile.class) || (isTouching (Water.class))) {
+            levens--;
             return;
         }
-        
-        public int levens() {
-             if(leven==0)
-            {
-            if(worldName=="MyWorld")
-            {
-                Greenfoot.setWorld(new Level2());
-}
-            
+           
         }
-        return levens;
-    }
         
+        
+        
+
+    
+
     
 
        boolean onGround(){
@@ -348,7 +344,7 @@ public class Hero extends Mover {
        public void dood() {
            leven --;
            if (leven > 0) {
-               setLocation(300, 200);
+               setLocation(100, 400);
             } else {
                 getWorld().removeObject(this);
             }
