@@ -238,6 +238,7 @@ public class Hero extends Mover {
         if(isTouching (Window.class)) {
            if (getWorld() instanceof TitleScreen) Greenfoot.setWorld(new Level2());
             if (getWorld() instanceof Level2) Greenfoot.setWorld(new Level3());
+            if (getWorld() instanceof Level3) Greenfoot.setWorld(new Level4());
     }
 }
     
