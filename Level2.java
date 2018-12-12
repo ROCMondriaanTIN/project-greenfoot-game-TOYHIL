@@ -15,6 +15,7 @@ public class Level2 extends World {
     public static int keyBlueX = 150;
     public static int keyGreenX = 150;
     public static int keyRedX = 150;
+    GreenfootSound backgroundMusic = new GreenfootSound("background.wav");
 
     /** 
      * Constructor for objects of class MyWorld.
@@ -24,6 +25,7 @@ public class Level2 extends World {
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 960, 1, false);
         this.setBackground("bg.png");
+        backgroundMusic.playLoop();
 
          int[][] map = {
             

@@ -15,15 +15,14 @@ public class Level4 extends World {
     public static int keyBlueX = 150;
     public static int keyGreenX = 150;
     public static int keyRedX = 150;
+    GreenfootSound backgroundMusic = new GreenfootSound("background.wav");
+    
 
-    /** 
-     * Constructor for objects of class MyWorld.
-     *
-     */
     public Level4() {
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 650, 1, false);
         this.setBackground("bg.png");
+        backgroundMusic.playLoop();
 
          int[][] map = {
        {65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65,65},
