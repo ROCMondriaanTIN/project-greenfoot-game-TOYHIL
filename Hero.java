@@ -173,13 +173,14 @@ public class Hero extends Mover {
         {
             if(isTouching (spikesTile.class))
             {
-                setLocation(50 , 400);
+                setLocation(127, 1393);
             }
             if(isTouching (Star.class)) {
             star++;
         }
         if (isTouching (spikesTile.class) || (isTouching (Water.class))) {
             levens--;
+            setLocation(127, 1393);
             return;
         }
            
@@ -344,7 +345,7 @@ public class Hero extends Mover {
        public void dood() {
            leven --;
            if (leven > 0) {
-               setLocation(100, 400);
+               setLocation(127, 1393);
             } else {
                 getWorld().removeObject(this);
             }
