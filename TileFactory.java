@@ -111,13 +111,6 @@ public class TileFactory {
 
                 break; 
 
-            case 10: 
-
-                tile = new Tile("boxItem.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
-
-                tile.isSolid = true; 
-
-                break; 
 
             case 11: 
 
@@ -1379,7 +1372,7 @@ public class TileFactory {
 
             case 171: 
 
-                tile = new Tile("window.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT); 
+                tile = new Window("window.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.WINDOW); 
 
                 tile.isSolid = false                  ; 
 
@@ -1739,7 +1732,7 @@ public class TileFactory {
 
             case 225: 
 
-                tile = new Tile("star.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.STAR); 
+                tile = new Star("star.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT, TileType.STAR); 
 
                 break; 
 

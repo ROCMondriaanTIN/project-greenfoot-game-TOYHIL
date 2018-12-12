@@ -21,7 +21,10 @@ public class TitleScreen extends World
     
     public void act()
     {
-        if (Greenfoot.isKeyDown("enter")) Greenfoot.setWorld(new MyWorld());
+        if (Greenfoot.isKeyDown("enter")) 
+        {
+            Greenfoot.setWorld(new Level2());
     }
+}
 }
 

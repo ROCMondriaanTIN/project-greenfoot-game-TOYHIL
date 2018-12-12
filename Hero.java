@@ -59,7 +59,8 @@ public class Hero extends Mover {
     public boolean keyRedAdded = false;
     public boolean gemAdded = false;
     private boolean toLevel2;
-    
+    int star = 0;
+
     
     
 
@@ -84,7 +85,7 @@ public class Hero extends Mover {
         }
         applyVelocity();
         handleInput();
-        gem();
+  
         toLevel2();
 
       
@@ -175,6 +176,9 @@ public class Hero extends Mover {
             {
                 setLocation(300 , 200);
             }
+            if(isTouching (Star.class)) {
+            star++;
+        }
             return;
         }
         
@@ -183,7 +187,7 @@ public class Hero extends Mover {
             {
             if(worldName=="MyWorld")
             {
-            Greenfoot.setWorld(new MyWorld());
+                Greenfoot.setWorld(new Level2());
 }
             
         }
@@ -212,7 +216,7 @@ public class Hero extends Mover {
             animatieRight();
         }
         if (Greenfoot.isKeyDown("Control") && (Greenfoot.isKeyDown("r"))) {
-            Greenfoot.setWorld(new MyWorld());
+            Greenfoot.setWorld(new Level2());
         }
 
 }
@@ -230,29 +234,15 @@ public class Hero extends Mover {
         return getImage().getHeight();
     }
     
-    public void updateScoremunt()
-    {
-        score ++;
-        }
+
+    
         
-        public void gem()
-        
-        {
-            if(isTouching(Gem.class))
-            
-            {
-                
-                removeTouching(Gem.class);
-                Gem++;
-}
-}
-    public boolean toLevel2() {
+    public void toLevel2() {
         if(isTouching (Window.class)) {
-            Greenfoot.setWorld(new Level2());
-            
-        }
-        return toLevel2;
+           if (getWorld() instanceof TitleScreen) Greenfoot.setWorld(new Level2());
+            if (getWorld() instanceof Level2) Greenfoot.setWorld(new Level3());
     }
+}
     
         
 
