@@ -58,8 +58,11 @@ public class Hero extends Mover {
     public boolean keyGreenAdded = false;
     public boolean keyRedAdded = false;
     public boolean gemAdded = false;
+    private int setPlaynumber = 1;
+    private int walkL = -10;
+    private int walkR = 10;
+    private int springNumy;
     
-
     public Hero(CollisionEngine collisionEngine, TileEngine tileEngine) {
         super();
         this.collisionEngine = collisionEngine;
@@ -92,6 +95,7 @@ public class Hero extends Mover {
         for (Actor enemy : getIntersectingObjects(Enemy.class)) {
             if (enemy != null) {
                 setLocation(300,200);
+                setPlaynumber = 1;
                 break;
             }
         }
@@ -99,11 +103,26 @@ public class Hero extends Mover {
         for (Tile tile : getIntersectingObjects(Tile.class)) {
 
             if (tile != null) {
-                if (tile.type == TileType.LIQUID) {
+                if(tile.getImage().toString().contains("hud_p1Alt")){
+                 setPlaynumber = 1;
+                // getWorld().removeObject(tile);
+                 break;
+         }else if(tile.getImage().toString().contains("hud_p2Alt")){
+                 setPlaynumber = 2;
+                // getWorld().removeObject(tile);
+                 break;
+         }else if(tile.getImage().toString().contains("hud_p3Alt")){
+                 setPlaynumber = 3;
+                // getWorld().removeObject(tile);
+                 break;
+                }
+                 else if (tile.type == TileType.LIQUID) {
                     setLocation(300,200);
+                    setPlaynumber = 1;
                     return;
-                } if (tile.type == TileType.SPIKES) {
+                }else if (tile.type == TileType.SPIKES) {
                     setLocation(300,200);
+                    setPlaynumber = 1;
                     return;
                 } else  if (tile.type == TileType.GEMBLUE) {
                             tileEngine.removeTile(tile);
@@ -165,13 +184,14 @@ public class Hero extends Mover {
             }
         }
     
-
+    
 
         public void isTouching()
         {
             if(isTouching (spikesTile.class))
             {
                 setLocation(300 , 200);
+                setPlaynumber = 1;
             }
             return;
         }
@@ -196,6 +216,22 @@ public class Hero extends Mover {
         }
         
        public void handleInput() { 
+           if(setPlaynumber == 1){
+               getImage().scale(82, 97);
+               springNumy = -14;
+               walkL = -10;
+               walkR = 10;
+            }else if(setPlaynumber == 2){
+                getImage().scale(82, 120);
+                springNumy = -17;
+                walkL = -10;
+                walkR = 10;
+            }else if(setPlaynumber == 3){
+                getImage().scale(56, 64);
+                springNumy = -11;
+                walkL = -7;
+                walkR = 7;
+            }
         if (Greenfoot.isKeyDown("w") && (onGround() == true)) {
             velocityY = -15;
             setImage("p1_jump.png");
@@ -211,6 +247,7 @@ public class Hero extends Mover {
         }
         if (Greenfoot.isKeyDown("Control") && (Greenfoot.isKeyDown("r"))) {
             Greenfoot.setWorld(new MyWorld());
+            setPlaynumber = 1;
         }
 
 }

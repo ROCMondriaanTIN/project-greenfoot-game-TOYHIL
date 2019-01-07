@@ -1824,6 +1824,16 @@ public class TileFactory {
                 tile.isSolid = false; 
 
                 break; 
+                
+                case 237:
+                tile = new Tile("hud_p1Alt.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+                break;
+            case 238:
+                tile = new Tile("hud_p2Alt.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+                break;
+            case 239:
+                tile = new Tile("hud_p3Alt.png", TileEngine.TILE_WIDTH, TileEngine.TILE_HEIGHT);
+                break;
 
                  
 
