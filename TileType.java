@@ -24,6 +24,7 @@ public enum TileType {
     REDLOCK,
     GREENLOCK,
     STAR,
+    WINDOW, 
     
     // Add your own tile types here
 }

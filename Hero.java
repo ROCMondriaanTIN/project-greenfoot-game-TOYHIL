@@ -7,7 +7,7 @@ import java.util.List;
  * @author R. Springer
  */
 public class Hero extends Mover {
-
+ 
     private final double gravity;
     private final double acc;
     private final double drag;
@@ -58,10 +58,16 @@ public class Hero extends Mover {
     public boolean keyGreenAdded = false;
     public boolean keyRedAdded = false;
     public boolean gemAdded = false;
+
     private int setPlaynumber = 1;
     private int walkL = -10;
     private int walkR = 10;
     private int springNumy;
+
+    private boolean toLevel2;
+    int star = 0;
+
+    
     
     public Hero(CollisionEngine collisionEngine, TileEngine tileEngine) {
         super();
@@ -77,7 +83,6 @@ public class Hero extends Mover {
     @Override
     public void act() {
         handleInput();
-        
         velocityX *= drag;
         velocityY += acc;
         if (velocityY > gravity) {
@@ -85,8 +90,7 @@ public class Hero extends Mover {
         }
         applyVelocity();
         handleInput();
-        gem();
-        
+        toLevel2();
 
       
         
@@ -103,6 +107,7 @@ public class Hero extends Mover {
         for (Tile tile : getIntersectingObjects(Tile.class)) {
 
             if (tile != null) {
+
                 if(tile.getImage().toString().contains("hud_p1Alt")){
                  setPlaynumber = 1;
                 // getWorld().removeObject(tile);
@@ -123,6 +128,12 @@ public class Hero extends Mover {
                 }else if (tile.type == TileType.SPIKES) {
                     setLocation(300,200);
                     setPlaynumber = 1;
+
+                if (tile.type == TileType.LIQUID) {
+                    setLocation(50,400);
+                    return;
+                } if (tile.type == TileType.SPIKES) {
+                    setLocation(50,400);
                     return;
                 } else  if (tile.type == TileType.GEMBLUE) {
                             tileEngine.removeTile(tile);
@@ -183,6 +194,7 @@ public class Hero extends Mover {
                 
             }
         }
+    }
     
     
 
@@ -190,24 +202,28 @@ public class Hero extends Mover {
         {
             if(isTouching (spikesTile.class))
             {
+
                 setLocation(300 , 200);
                 setPlaynumber = 1;
+
+                setLocation(127, 1393);
             }
+            if(isTouching (Star.class)) {
+            star++;
+        }
+        if (isTouching (spikesTile.class) || (isTouching (Water.class))) {
+            levens--;
+            setLocation(127, 1393);
             return;
         }
-        
-        public int levens() {
-             if(leven==0)
-            {
-            if(worldName=="MyWorld")
-            {
-            Greenfoot.setWorld(new MyWorld());
-}
-            
+           
         }
-        return levens;
-    }
         
+        
+        
+
+    
+
     
 
        boolean onGround(){
@@ -246,8 +262,12 @@ public class Hero extends Mover {
             animatieRight();
         }
         if (Greenfoot.isKeyDown("Control") && (Greenfoot.isKeyDown("r"))) {
+
             Greenfoot.setWorld(new MyWorld());
             setPlaynumber = 1;
+
+            Greenfoot.setWorld(new Level2());
+
         }
 
 }
@@ -265,22 +285,17 @@ public class Hero extends Mover {
         return getImage().getHeight();
     }
     
-    public void updateScoremunt()
-    {
-        score ++;
-        }
+
+    
         
-        public void gem()
-        
-        {
-            if(isTouching(Gem.class))
-            
-            {
-                
-                removeTouching(Gem.class);
-                Gem++;
+    public void toLevel2() {
+        if(isTouching (Window.class)) {
+           if (getWorld() instanceof TitleScreen) Greenfoot.setWorld(new Level2());
+            if (getWorld() instanceof Level2) Greenfoot.setWorld(new Level3());
+            if (getWorld() instanceof Level3) Greenfoot.setWorld(new Level4());
+    }
 }
-}
+    
         
 
     
@@ -385,11 +400,13 @@ public class Hero extends Mover {
        public void dood() {
            leven --;
            if (leven > 0) {
-               setLocation(300, 200);
+               setLocation(127, 1393);
             } else {
                 getWorld().removeObject(this);
             }
    }
+
+
 
      }
      
