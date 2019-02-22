@@ -63,13 +63,14 @@ public Hero(CollisionEngine collisionEngine, TileEngine tileEngine) {
     animatieP3 = new ArrayList<GreenfootImage>();
     for(int i = 1; i <= 11; i++) {
         String imageStart = "p1_walk0";
-        // als i > 9 dan grbruik je p1_walk i.p.v. p1_walk0;
         animatieP1.add(new GreenfootImage(imageStart + i + ".png"));
         animatieP2.add(new GreenfootImage(imageStart + i + ".png"));
         animatieP3.add(new GreenfootImage(imageStart + i + ".png"));
     }
     // verander current animatie naar de nieuw character zodra je deze oppakt.
     currentAnimation = animatieP1;
+    currentAnimation = animatieP2;
+    currentAnimation = animatieP3;
     
 }
 
@@ -249,13 +250,13 @@ public void act() {
     else if (Greenfoot.isKeyDown("a")) {
         velocityX = -5;
         animatie();
-        // Gebruik een private boolean om aan te geven of hij naar links of recht kijkt
-        // Flip als hij nog niet naar links kijkt
+        flip();
+        
     } 
     if (Greenfoot.isKeyDown("d")) {
         velocityX = 5;
         animatie();
-        // Flip als hij nog niet naar rechts kijkt
+        flip();
     }
     if (Greenfoot.isKeyDown("Control") && (Greenfoot.isKeyDown("r"))) {
 
@@ -296,11 +297,18 @@ public void toLevel2() {
 
 
     public void flip() { 
-        // for elke element 
-            // haal huidige image op met .get(i)
-            // Voer hier de .mirrorHorizontally() methode op uit
-            
+        for (int i = 1; i < 11; i++) { 
+            if (getImage().equals(animatieP1)) {
+                getImage().mirrorHorizontally();
+               }
+            else if (getImage().equals(animatieP2)) {
+                getImage().mirrorHorizontally();
+            }
+            else if (getImage().equals(animatieP3)) {
+                getImage().mirrorHorizontally();
+            }
     }
+}
 
     public void animatie() {
         frame++;
@@ -317,11 +325,11 @@ public void toLevel2() {
             } else {
                 getWorld().removeObject(this);
             }
-   }
+   }    
 
 
 
-     }
+     }  
      
 
         
